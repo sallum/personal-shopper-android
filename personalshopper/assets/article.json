@@ -1,0 +1,11 @@
+{
+		"id": "1",
+    	"brand": "nike",
+		"colour": "GREEN",
+		"image": "myImage",
+		"model": "mymodel",
+		"prize": "100",
+		"size": "L",
+		"type": "shoes",
+		"shop": "laTiendaDelBarrio"
+}   
