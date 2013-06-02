@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
 
 import com.android.datatypes.Article;
 import com.android.datatypes.Entity;
+import com.example.prueba.CustomizedListView;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -78,4 +81,9 @@ public class JsonParsingActivity extends Activity {
 
 		getDataThread.run();
 	}
+	
+	public void executeListView(View view) {
+        Intent i = new Intent(this, CustomizedListView.class);
+        startActivity(i);
+    }
 }

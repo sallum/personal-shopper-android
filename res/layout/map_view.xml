@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+   
+<fragment 
  		android:id="@+id/map"
   		android:layout_width="match_parent"
   		android:layout_height="match_parent"
   		class="com.google.android.gms.maps.SupportMapFragment"/>
-
+    
     <Button
         android:id="@+id/button_Location"
         style="@drawable/compass"

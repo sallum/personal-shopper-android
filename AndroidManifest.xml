@@ -21,7 +21,7 @@
         android:required="true" />
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="9"
         android:targetSdkVersion="17" />
 
     <application
@@ -42,6 +42,8 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAdrRzyKiUa8lHLQJFRaHsyvUYFbINX3Q0" />
+        <activity android:name="com.example.prueba.CustomizedListView"></activity>
+        
     </application>
 
 </manifest>
