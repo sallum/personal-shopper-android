@@ -73,9 +73,9 @@ public class JsonParsingActivity extends Activity {
 				// TODO: Methods prepared for generalizing and using the parser
 				// for more types of entities
 				Log.d("Instantiation", "Starting instantiation");
-				Article article = instantiateType(Article.class);
+				//Article article = instantiateType(Article.class);
 				// InformationManager.put(article);
-				Log.d("Instantiation", article.toString());
+				//Log.d("Instantiation", article.toString());
 			}
 		};
 

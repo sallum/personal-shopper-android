@@ -16,49 +16,102 @@
  
         <ImageView
             android:id="@+id/list_image"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
             android:src="@drawable/ic_launcher"/>
  
     </LinearLayout>
 
-    <!-- Title Of Song-->
+  
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="@string/title"
+        android:text="@string/brand"
         android:textColor="#040404"
         android:typeface="sans"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:textStyle="bold"/>
  
-    <!-- Artist Name -->
+   
     <TextView
-        android:id="@+id/artist"
+        android:id="@+id/type"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:textColor="#343434"
+        android:layout_below="@id/brand"
         android:textSize="12sp"
+        android:layout_marginTop="0dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="@string/type" />
+    
+    <TextView
+        android:id="@+id/sizefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type"
+        android:layout_marginRight="2dp"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="@string/artist" />
- 
-    <!-- Rightend Duration -->
+        android:text="@string/sizefix"
+        android:textSize="12sp" />
+    
     <TextView
-        android:id="@+id/duration"
+        android:id="@+id/size"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type"
+        android:textSize="12sp"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/sizefix"
+        android:text="@string/size" />
+    
+    <TextView
+        android:id="@+id/colour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sizefix"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="@string/colour"
+        android:textSize="12sp" />
+    
+    
+    <TextView
+        android:id="@+id/shop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/colour"
+        android:textSize="10sp"
+        android:layout_marginTop="5dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="@string/shop" />
+ 
+    
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shop"
+        android:textSize="10sp"
+        android:layout_marginTop="0dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="@string/address" />
+    
+ 
+    <TextView
+        android:id="@+id/prize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/title"
+        android:layout_alignTop="@id/type"
         android:gravity="right"
-        android:text="@string/duration"
+        android:text="@string/prize"
         android:layout_marginRight="5dip"
-        android:textSize="12sp"
-        android:textColor="#10bcc9"
+        android:textSize="20sp"
+        android:textColor="#4682b4"
         android:textStyle="bold"/>
  
 

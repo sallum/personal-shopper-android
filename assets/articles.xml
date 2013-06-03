@@ -1,0 +1,246 @@
+<articles>
+<article>
+<id>1</id>
+<type>Someone Like You</type>
+<brand>Adele</brand>
+<prize>100€</prize>
+<thumb_url>descarga</thumb_url>
+</article>
+<article>
+<id>2</id>
+<type>Space Bound</type>
+<brand>Eminem</brand>
+<prize>300€</prize>
+<thumb_url>
+descarga2
+</thumb_url>
+</article>
+<article>
+<id>3</id>
+<type>Stranger In Moscow</type>
+<brand>Michael Jackson</brand>
+<prize>24,67€</prize>
+<thumb_url>descarga</thumb_url>
+</article>
+<article>
+<id>4</id>
+<type>Love The Way You Lie</type>
+<brand>Rihanna</brand>
+<prize>4:23</prize>
+<thumb_url>
+descarga3
+</thumb_url>
+</article>
+<article>
+<id>5</id>
+<type>Khwaja Mere Khwaja</type>
+<brand>A R Rehman</brand>
+<prize>6:58</prize>
+<thumb_url>
+descarga4
+</thumb_url>
+</article>
+<article>
+<id>6</id>
+<type>All My Days</type>
+<brand>Alexi Murdoch</brand>
+<prize>4:47</prize>
+<thumb_url>
+descarga2
+</thumb_url>
+</article>
+<article>
+<id>7</id>
+<type>Life For Rent</type>
+<brand>Dido</brand>
+<prize>3:41</prize>
+<thumb_url>http://api.androidhive.info/music/images/dido.png1</thumb_url>
+</article>
+<article>
+<id>8</id>
+<type>Love To See You Cry</type>
+<brand>Enrique Iglesias</brand>
+<prize>4:07</prize>
+<thumb_url>http://api.androidhive.info/music/images/enrique.png2</thumb_url>
+</article>
+<article>
+<id>9</id>
+<type>The Good, The Bad And The Ugly</type>
+<brand>Ennio Morricone</brand>
+<prize>2:42</prize>
+<thumb_url>http://api.androidhive.info/music/images/ennio.png3</thumb_url>
+</article>
+<article>
+<id>10</id>
+<type>Show me the meaning</type>
+<brand>Backstreet Boys</brand>
+<prize>3:56</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/backstreet_boys.png4
+</thumb_url>
+</article>
+<article>
+<id>11</id>
+<type>Someone Like You</type>
+<brand>Adele</brand>
+<prize>4:47</prize>
+<thumb_url>http://api.androidhive.info/music/images/adele.png5</thumb_url>
+</article>
+<article>
+<id>12</id>
+<type>Space Bound</type>
+<brand>Eminem</brand>
+<prize>4:38</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/eminem.png6
+</thumb_url>
+</article>
+<article>
+<id>13</id>
+<type>Stranger In Moscow</type>
+<brand>Michael Jackson</brand>
+<prize>5:44</prize>
+<thumb_url>http://api.androidhive.info/music/images/mj.png7</thumb_url>
+</article>
+<article>
+<id>14</id>
+<type>Love The Way You Lie</type>
+<brand>Rihanna</brand>
+<prize>4:23</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/rihanna.png8
+</thumb_url>
+</article>
+<article>
+<id>15</id>
+<type>Khwaja Mere Khwaja</type>
+<brand>A R Rehman</brand>
+<prize>6:58</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/arrehman.png9
+</thumb_url>
+</article>
+<article>
+<id>16</id>
+<type>All My Days</type>
+<brand>Alexi Murdoch</brand>
+<prize>4:47</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/alexi_murdoch.png10
+</thumb_url>
+</article>
+<article>
+<id>17</id>
+<type>Life For Rent</type>
+<brand>Dido</brand>
+<prize>3:41</prize>
+<thumb_url>http://api.androidhive.info/music/images/dido.png11</thumb_url>
+</article>
+<article>
+<id>18</id>
+<type>Love To See You Cry</type>
+<brand>Enrique Iglesias</brand>
+<prize>4:07</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/enrique.png12
+</thumb_url>
+</article>
+<article>
+<id>19</id>
+<type>The Good, The Bad And The Ugly</type>
+<brand>Ennio Morricone</brand>
+<prize>2:42</prize>
+<thumb_url>http://api.androidhive.info/music/images/ennio.png13</thumb_url>
+</article>
+<article>
+<id>20</id>
+<type>Show me the meaning</type>
+<brand>Backstreet Boys</brand>
+<prize>3:56</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/backstreet_boys.png14
+</thumb_url>
+</article>
+<article>
+<id>21</id>
+<type>Someone Like You</type>
+<brand>Adele</brand>
+<prize>4:47</prize>
+<thumb_url>http://api.androidhive.info/music/images/adele.png15</thumb_url>
+</article>
+<article>
+<id>22</id>
+<type>Space Bound</type>
+<brand>Eminem</brand>
+<prize>4:38</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/eminem.png16
+</thumb_url>
+</article>
+<article>
+<id>23</id>
+<type>Stranger In Moscow</type>
+<brand>Michael Jackson</brand>
+<prize>5:44</prize>
+<thumb_url>http://api.androidhive.info/music/images/mj.png17</thumb_url>
+</article>
+<article>
+<id>24</id>
+<type>Love The Way You Lie</type>
+<brand>Rihanna</brand>
+<prize>4:23</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/rihanna.png18
+</thumb_url>
+</article>
+<article>
+<id>25</id>
+<type>Khwaja Mere Khwaja</type>
+<brand>A R Rehman</brand>
+<prize>6:58</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/arrehman.png19
+</thumb_url>
+</article>
+<article>
+<id>26</id>
+<type>All My Days</type>
+<brand>Alexi Murdoch</brand>
+<prize>4:47</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/alexi_murdoch.png20
+</thumb_url>
+</article>
+<article>
+<id>27</id>
+<type>Life For Rent</type>
+<brand>Dido</brand>
+<prize>3:41</prize>
+<thumb_url>http://api.androidhive.info/music/images/dido.png21</thumb_url>
+</article>
+<article>
+<id>28</id>
+<type>Love To See You Cry</type>
+<brand>Enrique Iglesias</brand>
+<prize>4:07</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/enrique.png22
+</thumb_url>
+</article>
+<article>
+<id>29</id>
+<type>The Good, The Bad And The Ugly</type>
+<brand>Ennio Morricone</brand>
+<prize>2:42</prize>
+<thumb_url>http://api.androidhive.info/music/images/ennio.png23</thumb_url>
+</article>
+<article>
+<id>30</id>
+<type>Show me the meaning</type>
+<brand>Backstreet Boys</brand>
+<prize>3:56</prize>
+<thumb_url>
+http://api.androidhive.info/music/images/backstreet_boys.png24
+</thumb_url>
+</article>
+</articles>

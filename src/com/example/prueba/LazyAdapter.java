@@ -3,8 +3,6 @@ package com.example.prueba;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.android.personalshopper.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.personalshopper.R;
 
  
 public class LazyAdapter extends BaseAdapter {
@@ -46,21 +46,24 @@ public class LazyAdapter extends BaseAdapter {
         if(convertView==null)
             vi = inflater.inflate(R.layout.list_row, null);
  
-        TextView title = (TextView)vi.findViewById(R.id.title); // title
-        TextView artist = (TextView)vi.findViewById(R.id.artist); // artist name
-        TextView duration = (TextView)vi.findViewById(R.id.duration); // duration
+        TextView type = (TextView)vi.findViewById(R.id.type);
+        TextView brand = (TextView)vi.findViewById(R.id.brand);
+        TextView prize = (TextView)vi.findViewById(R.id.prize);
+        //TextView colour = (TextView)vi.findViewById(R.id.colour);
+        //TextView shop = (TextView)vi.findViewById(R.id.shop);
+        //TextView address = (TextView)vi.findViewById(R.id.address);
         ImageView thumb_image = (ImageView)vi.findViewById(R.id.list_image);
 
-        HashMap<String, String> song = new HashMap<String, String>();
-        song = data.get(position);
+        HashMap<String, String> article = new HashMap<String, String>();
+        article = data.get(position);
  
         // Setting all values in listview
-        title.setText(song.get(CustomizedListView.KEY_TITLE));
-        artist.setText(song.get(CustomizedListView.KEY_ARTIST));
-        duration.setText(song.get(CustomizedListView.KEY_DURATION));
+        type.setText(article.get(CustomizedListView.KEY_TYPE));
+        brand.setText(article.get(CustomizedListView.KEY_BRAND));
+        prize.setText(article.get(CustomizedListView.KEY_PRIZE));
                
         //Setting an image
-        String url = "drawable/"+ song.get(CustomizedListView.KEY_THUMB_URL);
+        String url = "drawable/"+ article.get(CustomizedListView.KEY_THUMB_URL);
         int imageResource = vi.getResources().getIdentifier(url, null, vi.getContext().getApplicationContext().getPackageName());
         if(imageResource!=0){
         	thumb_image.setImageResource(imageResource);
