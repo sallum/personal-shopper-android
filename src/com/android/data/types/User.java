@@ -1,4 +1,4 @@
-package com.android.datatypes;
+package com.android.data.types;
 
 import java.util.List;
 

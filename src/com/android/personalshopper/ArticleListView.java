@@ -14,8 +14,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.adapter.LazyAdapter;
-import com.android.datatypes.Article;
-import com.android.datatypes.Entity;
+import com.android.data.types.Article;
+import com.android.data.types.Entity;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,10 +29,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class ArticleListView extends Activity {
 
+	/**
+	 * Private class that implements gets the articles information from the
+	 * server
+	 */
+	private class GetArticle extends Thread {
+
+		/**
+		 * Constructor
+		 */
+		public GetArticle() {
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void run() {
+			Article article = instantiateType(Article.class);
+			articleList.add(article);
+		}
+	}
+
 	// Server's url to make request
 	private static final String URL = "http://mycorner.bugs3.com/Jsonmysql.php";
-
 	private LazyAdapter adapter;
+	private List<Article> articleList;
 	private ListView list;
 
 	/**
@@ -44,7 +66,6 @@ public class ArticleListView extends Activity {
 	 */
 	private <T extends Entity> T instantiateType(Class<T> clazz) {
 		ObjectMapper mapper = new ObjectMapper();
-		// read JSON from a file
 		T entity = null;
 		try {
 			// TODO: read from server!
@@ -64,39 +85,23 @@ public class ArticleListView extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.articles_view);
 
 		// TODO: at the moment we only have one article in the list, make it
 		// general!
+		articleList = new ArrayList<Article>();
 
-		final List<Article> articleList = new ArrayList<Article>();
-
-		// TODO: Move this to a separate class
-		Log.d("JSON", "Starting Thread...");
-		final List<Thread> threads = new ArrayList<Thread>();
+		List<GetArticle> threads = new ArrayList<GetArticle>();
 		for (int i = 0; i < 5; i++) {
-			final Thread thread = new Thread() {
-				@Override
-				public void run() {
-					// TODO: Methods prepared for generalizing and using the
-					// parser
-					// for more types of entities
-					Log.d("Instantiation", "Starting instantiation");
-					Article article = instantiateType(Article.class);
-					articleList.add(article);
-					Log.d("Instantiation", article.toString());
-
-				}
-			};
-			thread.run();
-			threads.add(thread);
+			GetArticle articleThread = new GetArticle();
+			articleThread.run();
+			threads.add(articleThread);
 		}
 
-		for (Thread thread : threads) {
+		for (GetArticle thread : threads) {
 			try {
 				thread.join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -111,6 +116,7 @@ public class ArticleListView extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				// TODO: GO to item display information
 			}
 		});
 	}

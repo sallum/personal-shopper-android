@@ -1,4 +1,4 @@
-package com.android.datatypes;
+package com.android.data.types;
 
 /**
  * Shop Entity, represents a shop.

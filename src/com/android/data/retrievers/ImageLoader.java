@@ -1,4 +1,4 @@
-package com.example.prueba;
+package com.android.data.retrievers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,6 +14,8 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.android.memory.FileCache;
+import com.android.memory.MemoryCache;
 import com.android.personalshopper.R;
  
 import android.app.Activity;

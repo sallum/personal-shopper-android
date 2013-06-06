@@ -17,6 +17,7 @@
             android:layout_marginRight="5dp"
             android:layout_weight="7"
             android:ems="10"
+            android:focusable="false"
             android:hint="@string/search"
             android:inputType="text" />
 

@@ -1,4 +1,4 @@
-package com.example.prueba;
+package com.android.memory;
 
 import java.io.File;
 import android.content.Context;

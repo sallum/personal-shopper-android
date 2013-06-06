@@ -11,14 +11,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.datatypes.Article;
+import com.android.data.types.Article;
 import com.android.personalshopper.R;
 
+/**
+ * Adapter to fill the articles list.
+ * 
+ * @author Carlos Andres - 03-06-2013 - Initial version
+ * @author Ignacio Mulas - 06-06-2013 - Moved and adapted with Json structure
+ * 
+ */
 public class LazyAdapter extends BaseAdapter {
 
 	private static LayoutInflater inflater = null;
 	private List<Article> articleList;
-	final int stub_id = R.drawable.ic_launcher;
 
 	public LazyAdapter(Activity activity, List<Article> articleList) {
 		this.articleList = articleList;
@@ -66,7 +72,7 @@ public class LazyAdapter extends BaseAdapter {
 		if (imageResource != 0) {
 			thumb_image.setImageResource(imageResource);
 		} else {
-			thumb_image.setImageResource(stub_id);
+			thumb_image.setImageResource(R.drawable.ic_launcher);
 		}
 
 		return vi;

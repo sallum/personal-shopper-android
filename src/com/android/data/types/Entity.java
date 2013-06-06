@@ -1,4 +1,4 @@
-package com.android.datatypes;
+package com.android.data.types;
 
 /**
  * This interface will be used by all the entities to know that an object is a
