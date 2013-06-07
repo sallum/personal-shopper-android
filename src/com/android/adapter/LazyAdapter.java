@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.data.retrievers.ImageLoader;
 import com.android.data.types.Article;
 import com.android.personalshopper.R;
 
@@ -19,7 +20,6 @@ import com.android.personalshopper.R;
  * 
  * @author Carlos Andres - 03-06-2013 - Initial version
  * @author Ignacio Mulas - 06-06-2013 - Moved and adapted with Json structure
- * 
  */
 public class LazyAdapter extends BaseAdapter {
 
@@ -65,16 +65,12 @@ public class LazyAdapter extends BaseAdapter {
 				.getPrize()));
 
 		// Setting an image
-		String url = "drawable/" + article.getImage();
-		int imageResource = vi.getResources().getIdentifier(url, null,
-				vi.getContext().getApplicationContext().getPackageName());
+		// String url = "drawable/" + article.getImage();
+		// TODO: Change the fixed url with path contained in article
+		String url = "http://1.bp.blogspot.com/_tqK9UvJpH7I/S8x-j8pDiPI/AAAAAAAACQA/6yhThfoAo00/s320/mono.jpg";
 		ImageView thumb_image = (ImageView) vi.findViewById(R.id.list_image);
-		if (imageResource != 0) {
-			thumb_image.setImageResource(imageResource);
-		} else {
-			thumb_image.setImageResource(R.drawable.ic_launcher);
-		}
-
+		ImageLoader imageLoader = new ImageLoader(vi.getContext());
+		imageLoader.displayImage(url, thumb_image);
 		return vi;
 	}
 

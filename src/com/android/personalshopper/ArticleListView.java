@@ -3,6 +3,7 @@ package com.android.personalshopper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
@@ -36,9 +37,28 @@ public class ArticleListView extends Activity {
 	private class GetArticle extends Thread {
 
 		/**
-		 * Constructor
+		 * Helper method to instantiate an entity class
+		 * 
+		 * @param clazz
+		 *            - Class to instantiate
+		 * @return - instance
 		 */
-		public GetArticle() {
+		private <T extends Entity> T instantiateType(Class<T> clazz) {
+			ObjectMapper mapper = new ObjectMapper();
+			T entity = null;
+			try {
+				// TODO: read from server!
+				// entity = mapper.readValue(URL, clazz);
+				InputStream is = getAssets().open("article.json");
+				entity = mapper.readValue(is, clazz);
+			} catch (JsonParseException e1) {
+				Log.e("Parsing error", e1.getCause().toString());
+			} catch (JsonMappingException e1) {
+				Log.e("Parsing error", e1.getCause().toString());
+			} catch (IOException e1) {
+				Log.e("Parsing error", e1.getCause().toString());
+			}
+			return entity;
 		}
 
 		/**
@@ -57,31 +77,6 @@ public class ArticleListView extends Activity {
 	private List<Article> articleList;
 	private ListView list;
 
-	/**
-	 * Helper method to instantiate an entity class
-	 * 
-	 * @param clazz
-	 *            - Class to instantiate
-	 * @return - instance
-	 */
-	private <T extends Entity> T instantiateType(Class<T> clazz) {
-		ObjectMapper mapper = new ObjectMapper();
-		T entity = null;
-		try {
-			// TODO: read from server!
-			// entity = mapper.readValue(URL, clazz);
-			InputStream is = getAssets().open("article.json");
-			entity = mapper.readValue(is, clazz);
-		} catch (JsonParseException e1) {
-			Log.e("Parsing error", e1.getCause().toString());
-		} catch (JsonMappingException e1) {
-			Log.e("Parsing error", e1.getCause().toString());
-		} catch (IOException e1) {
-			Log.e("Parsing error", e1.getCause().toString());
-		}
-		return entity;
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -89,7 +84,7 @@ public class ArticleListView extends Activity {
 
 		// TODO: at the moment we only have one article in the list, make it
 		// general!
-		articleList = new ArrayList<Article>();
+		articleList = Collections.synchronizedList(new ArrayList<Article>());
 
 		List<GetArticle> threads = new ArrayList<GetArticle>();
 		for (int i = 0; i < 5; i++) {
