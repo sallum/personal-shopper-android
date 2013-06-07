@@ -65,12 +65,9 @@ public class LazyAdapter extends BaseAdapter {
 				.getPrize()));
 
 		// Setting an image
-		// String url = "drawable/" + article.getImage();
-		// TODO: Change the fixed url with path contained in article
-		String url = "http://1.bp.blogspot.com/_tqK9UvJpH7I/S8x-j8pDiPI/AAAAAAAACQA/6yhThfoAo00/s320/mono.jpg";
 		ImageView thumb_image = (ImageView) vi.findViewById(R.id.list_image);
 		ImageLoader imageLoader = new ImageLoader(vi.getContext());
-		imageLoader.displayImage(url, thumb_image);
+		imageLoader.displayImage(article.getImage(), thumb_image);
 		return vi;
 	}
 
