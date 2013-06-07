@@ -16,8 +16,8 @@ import android.widget.ListView;
 
 import com.android.adapter.LazyAdapter;
 import com.android.data.types.Article;
-import com.android.data.types.Entity;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -43,14 +43,18 @@ public class ArticleListView extends Activity {
 		 *            - Class to instantiate
 		 * @return - instance
 		 */
-		private <T extends Entity> T instantiateType(Class<T> clazz) {
+		// private <T extends Entity> List<T> instantiateType(Class<T> clazz) {
+		private List<Article> instantiateArticle() {
 			ObjectMapper mapper = new ObjectMapper();
-			T entity = null;
+			List<Article> articleList = null;
 			try {
 				// TODO: read from server!
 				// entity = mapper.readValue(URL, clazz);
 				InputStream is = getAssets().open("article.json");
-				entity = mapper.readValue(is, clazz);
+				// entity = mapper.readValue(is, clazz);
+				articleList = mapper.readValue(is,
+						new TypeReference<ArrayList<Article>>() {
+						});
 			} catch (JsonParseException e1) {
 				Log.e("Parsing error", e1.getCause().toString());
 			} catch (JsonMappingException e1) {
@@ -58,7 +62,7 @@ public class ArticleListView extends Activity {
 			} catch (IOException e1) {
 				Log.e("Parsing error", e1.getCause().toString());
 			}
-			return entity;
+			return articleList;
 		}
 
 		/**
@@ -66,8 +70,8 @@ public class ArticleListView extends Activity {
 		 */
 		@Override
 		public void run() {
-			Article article = instantiateType(Article.class);
-			articleList.add(article);
+			List<Article> articles = instantiateArticle();
+			articleList.addAll(articles);
 		}
 	}
 
@@ -86,19 +90,29 @@ public class ArticleListView extends Activity {
 		// general!
 		articleList = Collections.synchronizedList(new ArrayList<Article>());
 
-		List<GetArticle> threads = new ArrayList<GetArticle>();
-		for (int i = 0; i < 5; i++) {
-			GetArticle articleThread = new GetArticle();
-			articleThread.run();
-			threads.add(articleThread);
-		}
+		// TODO: Launch more threads to get more results...
+		// List<GetArticle> threads = new ArrayList<GetArticle>();
+		// for (int i = 0; i < 5; i++) {
+		// GetArticle articleThread = new GetArticle();
+		// articleThread.run();
+		// threads.add(articleThread);
+		// }
+		//
+		// for (GetArticle thread : threads) {
+		// try {
+		// thread.join();
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
+		// }
 
-		for (GetArticle thread : threads) {
-			try {
-				thread.join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		GetArticle articleThread = new GetArticle();
+		articleThread.run();
+		try {
+			articleThread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		list = (ListView) findViewById(R.id.list);
