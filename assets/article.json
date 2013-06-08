@@ -20,5 +20,38 @@
 		"size": "L",
 		"type": "shoes",
 		"shop": "laTiendaDelBarrio"
+		},
+		{
+		"id": "3",
+    	"brand": "reebok",
+		"colour": "GREEN",
+		"image": "http://1.bp.blogspot.com/_tqK9UvJpH7I/S8x-j8pDiPI/AAAAAAAACQA/6yhThfoAo00/s320/mono.jpg",
+		"model": "mymodel",
+		"prize": "100",
+		"size": "L",
+		"type": "shoes",
+		"shop": "laTiendaDelBarrio"
+		},
+		{
+		"id": "4",
+    	"brand": "zara",
+		"colour": "BLUE",
+		"image": "http://mediablogs.los40.com/andaya/files/2012/09/Mono-ok.jpg",
+		"model": "mymodel",
+		"prize": "100",
+		"size": "L",
+		"type": "shoes",
+		"shop": "laTiendaDelBarrio"
+		},
+				{
+		"id": "5",
+    	"brand": "mango",
+		"colour": "BLUE",
+		"image": "http://1.bp.blogspot.com/_tqK9UvJpH7I/S8x-j8pDiPI/AAAAAAAACQA/6yhThfoAo00/s320/mono.jpg",
+		"model": "mymodel",
+		"prize": "100",
+		"size": "L",
+		"type": "shoes",
+		"shop": "laTiendaDelBarrio"
 		}
 ]   

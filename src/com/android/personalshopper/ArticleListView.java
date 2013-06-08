@@ -80,6 +80,28 @@ public class ArticleListView extends Activity {
 	private LazyAdapter adapter;
 	private List<Article> articleList;
 	private ListView list;
+	private List<GetArticle> threads;
+
+	/**
+	 * Thread starter. Just provide the number of threads to launch.
+	 * 
+	 * @param numberOfThreads
+	 */
+	private void startThreads(int numberOfThreads) {
+		for (int i = 0; i < numberOfThreads; i++) {
+			GetArticle articleThread = new GetArticle();
+			articleThread.run();
+			threads.add(articleThread);
+		}
+
+		for (GetArticle thread : threads) {
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -89,31 +111,9 @@ public class ArticleListView extends Activity {
 		// TODO: at the moment we only have one article in the list, make it
 		// general!
 		articleList = Collections.synchronizedList(new ArrayList<Article>());
+		threads = new ArrayList<GetArticle>();
 
-		// TODO: Launch more threads to get more results...
-		// List<GetArticle> threads = new ArrayList<GetArticle>();
-		// for (int i = 0; i < 5; i++) {
-		// GetArticle articleThread = new GetArticle();
-		// articleThread.run();
-		// threads.add(articleThread);
-		// }
-		//
-		// for (GetArticle thread : threads) {
-		// try {
-		// thread.join();
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
-		// }
-
-		GetArticle articleThread = new GetArticle();
-		articleThread.run();
-		try {
-			articleThread.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		startThreads(3);
 
 		list = (ListView) findViewById(R.id.list);
 		adapter = new LazyAdapter(this, articleList);
