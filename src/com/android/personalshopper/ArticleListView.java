@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.adapter.LazyAdapter;
+import com.android.data.retrievers.Locator;
 import com.android.data.types.Article;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -43,7 +46,6 @@ public class ArticleListView extends Activity {
 		 *            - Class to instantiate
 		 * @return - instance
 		 */
-		// private <T extends Entity> List<T> instantiateType(Class<T> clazz) {
 		private List<Article> instantiateArticle() {
 			ObjectMapper mapper = new ObjectMapper();
 			List<Article> articleList = null;
@@ -51,7 +53,6 @@ public class ArticleListView extends Activity {
 				// TODO: read from server!
 				// entity = mapper.readValue(URL, clazz);
 				InputStream is = getAssets().open("article.json");
-				// entity = mapper.readValue(is, clazz);
 				articleList = mapper.readValue(is,
 						new TypeReference<ArrayList<Article>>() {
 						});
@@ -77,10 +78,17 @@ public class ArticleListView extends Activity {
 
 	// Server's url to make request
 	private static final String URL = "http://mycorner.bugs3.com/Jsonmysql.php";
+
 	private LazyAdapter adapter;
 	private List<Article> articleList;
 	private ListView list;
+	private Locator locator;
 	private List<GetArticle> threads;
+
+	private void executeMap() {
+		Intent i = new Intent(this, MapView.class);
+		startActivity(i);
+	}
 
 	/**
 	 * Thread starter. Just provide the number of threads to launch.
@@ -108,8 +116,10 @@ public class ArticleListView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.articles_view);
 
-		// TODO: at the moment we only have one article in the list, make it
-		// general!
+		locator = new Locator(getApplicationContext());
+		Location location = locator.getBestLocation();
+		Log.d("ArticleView", location.toString());
+
 		articleList = Collections.synchronizedList(new ArrayList<Article>());
 		threads = new ArrayList<GetArticle>();
 
@@ -125,6 +135,7 @@ public class ArticleListView extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				executeMap();
 				// TODO: GO to item display information
 			}
 		});

@@ -1,17 +1,14 @@
 package com.android.personalshopper;
 
-import android.content.Intent;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.data.retrievers.Locator;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -24,63 +21,31 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * @author Ignacio Mulas - 17-05-2013 - Initial version
  * 
  */
-public class MapActivity extends android.support.v4.app.FragmentActivity
+public class MapView extends android.support.v4.app.FragmentActivity
 		implements LocationListener {
 
 	/**
 	 * Map object
 	 */
 	private static GoogleMap mMap;
-
-	/**
-	 * Initial location
-	 */
-	// TODO: Add location dynamically when starts
-	private static final LatLng STOCKHOLM = new LatLng(59.332434, 18.06295);
-
-	/**
-	 * Only prompt the settings the first time
-	 */
-	private boolean hasAsked = false;
-
 	private Button locationButton;
-
-	/**
-	 * Object that will contain the location information
-	 */
-	private LocationManager service;
-
-	/**
-	 * Check if GPS is active or not and prompt the screen to enable if needed
-	 */
-	private void checkIfGPSIsActive() {
-
-		// Check if enabled and if not send user to the GSP settings
-		// Better solution would be to display a dialog and suggesting to
-		// go to the settings
-		if (!service.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			startActivity(intent);
-		}
-	}
 
 	/**
 	 * Called each time the Activity is used in order to initialize the button.
 	 */
 	private void initLocationButton() {
-
 		locationButton = (Button) findViewById(R.id.button_Location);
 		locationButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				service = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-				if (!hasAsked) {
-					hasAsked = true;
-					checkIfGPSIsActive();
-				}
-
-				locateMe();
+				// TODO: Update this with a better way...
+				Location myLocation = new Locator(getApplicationContext())
+						.getBestLocation();
+				LatLng myPosition = new LatLng(myLocation.getLatitude(),
+						myLocation.getLongitude());
+				mMap.addMarker(new MarkerOptions().position(myPosition));
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+						myPosition, 13));
 			}
 		});
 
@@ -94,7 +59,11 @@ public class MapActivity extends android.support.v4.app.FragmentActivity
 	 * is not null.
 	 */
 	private void setUpMap() {
-		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(STOCKHOLM, 13));
+		Location myLocation = new Locator(getApplicationContext())
+				.getBestLocation();
+		LatLng myPosition = new LatLng(myLocation.getLatitude(),
+				myLocation.getLongitude());
+		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13));
 	}
 
 	/**
@@ -126,20 +95,6 @@ public class MapActivity extends android.support.v4.app.FragmentActivity
 			if (mMap != null) {
 				setUpMap();
 			}
-		}
-	}
-
-	/**
-	 * Method for locating myself
-	 */
-	protected void locateMe() {
-		Criteria criteria = new Criteria();
-		Location location = service.getLastKnownLocation(service
-				.getBestProvider(criteria, false));
-
-		// Initialize the location fields
-		if (location != null) {
-			onLocationChanged(location);
 		}
 	}
 
