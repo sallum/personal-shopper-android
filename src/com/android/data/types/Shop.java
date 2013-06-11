@@ -9,13 +9,15 @@ package com.android.data.types;
 public class Shop implements Entity {
 
 	private String address; // TODO: Create class Address
-	private int id;
-	// Meter coordenadas
-	private float latitude;
-	private float longitude;
 	// TODO: Openning times
-	private String mail;
+	private String email;
+	// Meter coordenadas
+	// TODO: Change latitude and longitude!!!
+	private float latitud;
+	private float longitud;
 	private String name;
+	private String schedule;
+	private long shopId;
 
 	/**
 	 * Empty constructor used by jackson
@@ -32,31 +34,24 @@ public class Shop implements Entity {
 	}
 
 	/**
-	 * @return the id
+	 * @return the email
 	 */
-	public int getId() {
-		return id;
+	public String getEmail() {
+		return email;
 	}
 
 	/**
 	 * @return the latitude
 	 */
-	public float getLatitude() {
-		return latitude;
+	public float getLatitud() {
+		return latitud;
 	}
 
 	/**
 	 * @return the longitude
 	 */
-	public float getLongitude() {
-		return longitude;
-	}
-
-	/**
-	 * @return the mail
-	 */
-	public String getMail() {
-		return mail;
+	public float getLongitud() {
+		return longitud;
 	}
 
 	/**
@@ -67,6 +62,20 @@ public class Shop implements Entity {
 	}
 
 	/**
+	 * @return the schedule
+	 */
+	public String getSchedule() {
+		return schedule;
+	}
+
+	/**
+	 * @return the shopId
+	 */
+	public long getShopId() {
+		return shopId;
+	}
+
+	/**
 	 * @param address
 	 */
 	public void setAddress(String address) {
@@ -74,31 +83,25 @@ public class Shop implements Entity {
 	}
 
 	/**
-	 * @param id
+	 * @param email
+	 *            the email to set
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**
 	 * @param latitude
 	 */
-	public void setLatitude(float latitude) {
-		this.latitude = latitude;
+	public void setLatitud(float latitude) {
+		this.latitud = latitude;
 	}
 
 	/**
 	 * @param longitude
 	 */
-	public void setLongitude(float longitude) {
-		this.longitude = longitude;
-	}
-
-	/**
-	 * @param mail
-	 */
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setLongitud(float longitude) {
+		this.longitud = longitude;
 	}
 
 	/**
@@ -108,6 +111,22 @@ public class Shop implements Entity {
 		this.name = name;
 	}
 
+	/**
+	 * @param schedule
+	 *            the schedule to set
+	 */
+	public void setSchedule(String schedule) {
+		this.schedule = schedule;
+	}
+
+	/**
+	 * @param shopId
+	 *            the shopId to set
+	 */
+	public void setShopId(long shopId) {
+		this.shopId = shopId;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -115,31 +134,12 @@ public class Shop implements Entity {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Shop [");
-		if (address != null) {
-			builder.append("address=");
-			builder.append(address);
-			builder.append(", ");
-		}
-		builder.append("id=");
-		builder.append(id);
-		builder.append(", latitude=");
-		builder.append(latitude);
-		builder.append(", longitude=");
-		builder.append(longitude);
-		builder.append(", ");
-		if (mail != null) {
-			builder.append("mail=");
-			builder.append(mail);
-			builder.append(", ");
-		}
-		if (name != null) {
-			builder.append("name=");
-			builder.append(name);
-		}
-		builder.append("]");
-		return builder.toString();
+		return "Shop [" + (address != null ? "address=" + address + ", " : "")
+				+ "shopId=" + shopId + ", latitude=" + latitud + ", longitude="
+				+ longitud + ", "
+				+ (email != null ? "email=" + email + ", " : "")
+				+ (name != null ? "name=" + name + ", " : "")
+				+ (schedule != null ? "schedule=" + schedule : "") + "]";
 	}
 
 }

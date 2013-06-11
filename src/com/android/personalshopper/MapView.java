@@ -21,8 +21,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * @author Ignacio Mulas - 17-05-2013 - Initial version
  * 
  */
-public class MapView extends android.support.v4.app.FragmentActivity
-		implements LocationListener {
+public class MapView extends android.support.v4.app.FragmentActivity implements
+		LocationListener {
 
 	/**
 	 * Map object
@@ -59,6 +59,7 @@ public class MapView extends android.support.v4.app.FragmentActivity
 	 * is not null.
 	 */
 	private void setUpMap() {
+		// TODO: Put my location with an arrow and the store with a market
 		Location myLocation = new Locator(getApplicationContext())
 				.getBestLocation();
 		LatLng myPosition = new LatLng(myLocation.getLatitude(),

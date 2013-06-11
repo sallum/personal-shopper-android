@@ -19,6 +19,7 @@ import android.widget.ListView;
 import com.android.adapter.LazyAdapter;
 import com.android.data.retrievers.Locator;
 import com.android.data.types.Article;
+import com.android.data.types.Shop;
 import com.android.ui.animations.SwipeListViewTouchListener;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -77,6 +78,49 @@ public class ArticleListView extends Activity {
 		}
 	}
 
+	// TODO: Move this classes to an independent location!
+	/**
+	 * Private class that implements gets the articles information from the
+	 * server
+	 */
+	private class GetShop extends Thread {
+
+		/**
+		 * Helper method to instantiate an entity class
+		 * 
+		 * @param clazz
+		 *            - Class to instantiate
+		 * @return - instance
+		 */
+		private Shop instantiateShop() {
+			ObjectMapper mapper = new ObjectMapper();
+			Shop shop = null;
+			try {
+				// TODO: read from server!
+				// entity = mapper.readValue(URL, clazz);
+				InputStream is = getAssets().open("shop.json");
+				shop = mapper.readValue(is, Shop.class);
+				// TODO: Change error messages
+			} catch (JsonParseException e1) {
+				Log.e("Parsing error", e1.getCause().toString());
+			} catch (JsonMappingException e1) {
+				e1.printStackTrace();
+				Log.e("Parsing error", e1.getCause().toString());
+			} catch (IOException e1) {
+				Log.e("Parsing error", e1.getCause().toString());
+			}
+			return shop;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void run() {
+			shop = instantiateShop();
+		}
+	}
+
 	// Server's url to make request
 	private static final String URL = "http://mycorner.bugs3.com/Jsonmysql.php";
 
@@ -84,6 +128,9 @@ public class ArticleListView extends Activity {
 	private List<Article> articleList;
 	private ListView list;
 	private Locator locator;
+	private Shop shop; // TODO : Change this...
+	// TODO: It will be useful to have some caching on the shops information as
+	// well, as there will be multiple articles in the same shop...
 	private List<GetArticle> threads;
 
 	private void executeMap() {
@@ -164,6 +211,15 @@ public class ArticleListView extends Activity {
 						// Log.i(ProfileMenuActivity.class.getClass().getName(),
 						// "swipe right : pos="+reverseSortedPositions[0]);
 						// TODO : Go to see the ARticle location
+						GetShop shopThread = new GetShop();
+						shopThread.start();
+						try {
+							shopThread.join();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						Log.d("JSON", shop.toString());
 						// TODO: Download shop information and display a
 						// mrker with shop's information together with your
 						// current position
