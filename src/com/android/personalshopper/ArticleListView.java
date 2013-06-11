@@ -19,6 +19,7 @@ import android.widget.ListView;
 import com.android.adapter.LazyAdapter;
 import com.android.data.retrievers.Locator;
 import com.android.data.types.Article;
+import com.android.ui.animations.SwipeListViewTouchListener;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -135,9 +136,46 @@ public class ArticleListView extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				executeMap();
 				// TODO: GO to item display information
 			}
 		});
+
+		// Create a ListView-specific touch listener. ListViews are given
+		// special treatment because
+		// by default they handle touches for their list items... i.e. they're
+		// in charge of drawing
+		// the pressed state (the list selector), handling list item clicks,
+		// etc.
+		SwipeListViewTouchListener touchListener = new SwipeListViewTouchListener(
+				list, new SwipeListViewTouchListener.OnSwipeCallback() {
+					@Override
+					public void onSwipeLeft(ListView listView,
+							int[] reverseSortedPositions) {
+						// Log.i(this.getClass().getName(),
+						// "swipe left : pos="+reverseSortedPositions[0]);
+						// TODO : Remove the row from the view!
+						// TODO : While swiping change color and set a "delete"
+						// message
+					}
+
+					@Override
+					public void onSwipeRight(ListView listView,
+							int[] reverseSortedPositions) {
+						// Log.i(ProfileMenuActivity.class.getClass().getName(),
+						// "swipe right : pos="+reverseSortedPositions[0]);
+						// TODO : Go to see the ARticle location
+						// TODO: Download shop information and display a
+						// mrker with shop's information together with your
+						// current position
+						// TODO: while swiping change color and set something
+						// like "Go!"
+					}
+				}, true, // example : left action = dismiss
+				false); // example : right action without dismiss animation
+
+		list.setOnTouchListener(touchListener);
+		// Setting this scroll listener is required to ensure that during
+		// ListView scrolling, we don't look for swipes.
+		list.setOnScrollListener(touchListener.makeScrollListener());
 	}
 }
