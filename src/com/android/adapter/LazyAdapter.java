@@ -18,9 +18,8 @@ import com.android.personalshopper.R;
 /**
  * Adapter to fill the articles list.
  * 
- * @author Carlos Andres - 03-06-2013 - Initial version
- * @author Ignacio Mulas - 06-06-2013 - Moved and adapted with Json structure
- * @author Ignacio Mulas - 08-06-2013 - Fixed race condition when loading photo
+ * @author Carlos Andres
+ * @author Ignacio Mulas
  */
 public class LazyAdapter extends BaseAdapter {
 

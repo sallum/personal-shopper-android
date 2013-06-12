@@ -3,7 +3,7 @@ package com.android.data.types;
 /**
  * Shop Entity, represents a shop.
  * 
- * @author Ignacio Mulas - 17-05-2013 - Initial version
+ * @author Ignacio Mulas
  * 
  */
 public class Shop implements Entity {

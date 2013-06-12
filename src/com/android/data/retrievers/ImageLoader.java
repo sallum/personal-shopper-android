@@ -28,7 +28,7 @@ import com.android.personalshopper.R;
  * This class will download an image from the server and show it on the list of
  * articles.
  * 
- * @author Ignacio Mulas - 07-06-2013 - Initial version
+ * @author Ignacio Mulas
  */
 public class ImageLoader {
 
@@ -120,6 +120,7 @@ public class ImageLoader {
 	}
 
 	private ExecutorService executorService;
+
 	private FileCache fileCache;
 	private Map<ImageView, String> imageViews = Collections
 			.synchronizedMap(new WeakHashMap<ImageView, String>());
@@ -134,6 +135,27 @@ public class ImageLoader {
 	public ImageLoader(Context context) {
 		fileCache = new FileCache(context);
 		executorService = Executors.newFixedThreadPool(5);
+	}
+
+	/**
+	 * Buffer to control the input and output streams.
+	 * 
+	 * @param is
+	 * @param os
+	 */
+	private void copyStream(InputStream is, OutputStream os) {
+		final int buffer_size = 1024;
+		try {
+			byte[] bytes = new byte[buffer_size];
+			for (;;) {
+				int count = is.read(bytes, 0, buffer_size);
+				if (count == -1) {
+					break;
+				}
+				os.write(bytes, 0, count);
+			}
+		} catch (Exception ex) {
+		}
 	}
 
 	/**
@@ -199,7 +221,7 @@ public class ImageLoader {
 			conn.setInstanceFollowRedirects(true);
 			InputStream is = conn.getInputStream();
 			OutputStream os = new FileOutputStream(f);
-			Utils.CopyStream(is, os);
+			copyStream(is, os);
 			os.close();
 			bitmap = decodeFile(f);
 			return bitmap;
@@ -207,6 +229,20 @@ public class ImageLoader {
 			ex.printStackTrace();
 			return null;
 		}
+	}
+
+	/**
+	 * Internal method to check if an image is already in memory
+	 * 
+	 * @param photoToLoad
+	 * @return
+	 */
+	private boolean imageViewReused(PhotoToLoad photoToLoad) {
+		String tag = imageViews.get(photoToLoad.imageView);
+		if (tag == null || !tag.equals(photoToLoad.url)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -218,20 +254,6 @@ public class ImageLoader {
 	private void queuePhoto(String url, ImageView imageView) {
 		PhotoToLoad p = new PhotoToLoad(url, imageView);
 		executorService.submit(new PhotosLoader(p));
-	}
-
-	/**
-	 * Internal method to check if an image is already in memory
-	 * 
-	 * @param photoToLoad
-	 * @return
-	 */
-	boolean imageViewReused(PhotoToLoad photoToLoad) {
-		String tag = imageViews.get(photoToLoad.imageView);
-		if (tag == null || !tag.equals(photoToLoad.url)) {
-			return true;
-		}
-		return false;
 	}
 
 	/**

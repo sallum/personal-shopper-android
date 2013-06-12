@@ -8,7 +8,7 @@ import android.util.Log;
 /**
  * This class is in charge of handling the user's location
  * 
- * @author Ignacio Mulas 08-06-2013 - initial version
+ * @author Ignacio Mulas
  */
 public class Locator {
 

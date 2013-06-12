@@ -4,6 +4,12 @@ import java.io.File;
 
 import android.content.Context;
 
+/**
+ * Class to handle external storage in the android device.
+ * 
+ * @author Ignacio Mulas
+ * 
+ */
 public class FileCache {
 
 	private File cacheDir;
@@ -34,6 +40,7 @@ public class FileCache {
 	}
 
 	public File getFile(String url) {
+		// TODO: Check for better ways?
 		// I identify images by hashcode. Not a perfect solution, good for the
 		// demo.
 		String filename = String.valueOf(url.hashCode());

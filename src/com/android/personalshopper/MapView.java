@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * This class contains the map activity
  * 
- * @author Ignacio Mulas - 17-05-2013 - Initial version
+ * @author Ignacio Mulas
  * 
  */
 public class MapView extends android.support.v4.app.FragmentActivity implements

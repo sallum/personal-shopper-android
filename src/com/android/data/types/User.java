@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * User Entity, represents a user.
  * 
- * @author Ignacio Mulas - 17-05-2013 - Initial version
+ * @author Ignacio Mulas
  * 
  */
 public class User implements Entity {

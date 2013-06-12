@@ -8,6 +8,7 @@ import android.view.View;
 /**
  * Welcome screen!
  * 
+ * @author Carlos Andres
  * @author Ignacio Mulas
  * 
  */

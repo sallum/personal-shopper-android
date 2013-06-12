@@ -3,7 +3,7 @@ package com.android.data.types;
 /**
  * Article Entity, represents an article.
  * 
- * @author Ignacio Mulas - 17-05-2013 - Initial version
+ * @author Ignacio Mulas
  * 
  */
 public class Article implements Entity {
