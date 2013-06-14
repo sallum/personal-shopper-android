@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.adapter.LazyAdapter;
 import com.android.data.manager.DataManager;
@@ -31,6 +33,7 @@ public class ArticleListView extends Activity {
 	private ListView list;
 	private Locator locator;
 	private DataManager manager;
+	private EditText Type;
 
 	private void executeMap() {
 		Intent i = new Intent(this, MapView.class);
@@ -41,27 +44,46 @@ public class ArticleListView extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.articles_view);
+		
 
 		locator = new Locator(getApplicationContext());
 		Location location = locator.getBestLocation();
-		Log.d("ArticleView", location.toString());
-
+		//Log.d("ArticleView", location.toString());
+		
+		
 		manager = new DataManager(getApplicationContext());
 		manager.getArticles(3);
 
 		list = (ListView) findViewById(R.id.list);
 		adapter = new LazyAdapter(this, manager.getArticlesList());
 		list.setAdapter(adapter);
+		
+		list.setOnItemClickListener(new OnItemClickListener() {
+			
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			Intent i = new Intent(ArticleListView.this, OneArticleView.class);
+			TextView brand = (TextView) view.findViewById(R.id.brand);
+			String brandString = brand.getText().toString();
+			i.putExtra("brand", brandString);
+			startActivity(i);
+			
+			// TODO: GO to item display information
+		}
+		});
 
 		// Click event for single list row
-		list.setOnItemClickListener(new OnItemClickListener() {
+		//list.setOnItemClickListener(new OnItemClickListener() {
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO: GO to item display information
-			}
-		});
+			//@Override
+			//public void onItemClick(AdapterView<?> parent, View view, int position, long id) {		
+			//	Intent i = new Intent(ArticleListView.this, OneArticleView.class);
+			//	Object obj = this.getListAdapter().getItem(position);
+			//	String value= obj.toString();
+			//	startActivity(i);
+				
+			//}
+		//});
 
 		// Create a ListView-specific touch listener. ListViews are given
 		// special treatment because
@@ -73,7 +95,7 @@ public class ArticleListView extends Activity {
 				list, new SwipeListViewTouchListener.OnSwipeCallback() {
 					@Override
 					public void onSwipeLeft(ListView listView,
-							int[] reverseSortedPositions) {
+							int[] reverseSortedPositions) {					
 						// Log.i(this.getClass().getName(),
 						// "swipe left : pos="+reverseSortedPositions[0]);
 						// TODO : Remove the row from the view!
@@ -99,6 +121,7 @@ public class ArticleListView extends Activity {
 				false); // example : right action without dismiss animation
 
 		list.setOnTouchListener(touchListener);
+		//finish();
 		// Setting this scroll listener is required to ensure that during
 		// ListView scrolling, we don't look for swipes.
 		list.setOnScrollListener(touchListener.makeScrollListener());

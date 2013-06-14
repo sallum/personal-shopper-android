@@ -59,12 +59,13 @@ public class MapView extends android.support.v4.app.FragmentActivity implements
 	 * is not null.
 	 */
 	private void setUpMap() {
+		
 		// TODO: Put my location with an arrow and the store with a market
-		Location myLocation = new Locator(getApplicationContext())
-				.getBestLocation();
-		LatLng myPosition = new LatLng(myLocation.getLatitude(),
-				myLocation.getLongitude());
-		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13));
+		//Location myLocation = new Locator(getApplicationContext())
+		//		.getBestLocation();
+		//LatLng myPosition = new LatLng(myLocation.getLatitude(),
+		//		myLocation.getLongitude());
+		//mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13));
 	}
 
 	/**

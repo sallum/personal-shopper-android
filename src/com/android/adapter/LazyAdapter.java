@@ -26,6 +26,7 @@ public class LazyAdapter extends BaseAdapter {
 	private static LayoutInflater inflater = null;
 	private List<Article> articleList;
 	private ImageLoader imageLoader;
+	private TextView Type;
 
 	public LazyAdapter(Activity activity, List<Article> articleList) {
 		this.articleList = articleList;
@@ -73,4 +74,5 @@ public class LazyAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	
 }
