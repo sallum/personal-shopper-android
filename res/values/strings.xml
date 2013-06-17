@@ -16,5 +16,7 @@
     <string name="shop">Shop</string>
     <string name="colour">Colour</string>
     <string name="brand">Brand</string>
+    <string name="BuyBotton">Buy it!</string>
+    <string name="ArticleImage">Article Image</string>
 
 </resources>

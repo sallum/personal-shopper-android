@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,7 +33,6 @@ public class ArticleListView extends Activity {
 	private ListView list;
 	private Locator locator;
 	private DataManager manager;
-	private EditText Type;
 
 	private void executeMap() {
 		Intent i = new Intent(this, MapView.class);
@@ -48,7 +47,7 @@ public class ArticleListView extends Activity {
 
 		locator = new Locator(getApplicationContext());
 		Location location = locator.getBestLocation();
-		//Log.d("ArticleView", location.toString());
+		Log.d("ArticleView", location.toString());
 		
 		
 		manager = new DataManager(getApplicationContext());
@@ -64,8 +63,25 @@ public class ArticleListView extends Activity {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			Intent i = new Intent(ArticleListView.this, OneArticleView.class);
 			TextView brand = (TextView) view.findViewById(R.id.brand);
+			TextView type = (TextView) view.findViewById(R.id.type);
+			TextView size = (TextView) view.findViewById(R.id.size);
+			TextView colour = (TextView) view.findViewById(R.id.colour);
+			TextView shop = (TextView) view.findViewById(R.id.shop);
+			TextView address = (TextView) view.findViewById(R.id.address);
 			String brandString = brand.getText().toString();
+			String typeString = type.getText().toString();
+			String sizeString = size.getText().toString();
+			String colourString = colour.getText().toString();
+			String shopString = shop.getText().toString();
+			String addressString = address.getText().toString();
+			
 			i.putExtra("brand", brandString);
+			i.putExtra("type", typeString);
+			i.putExtra("size", sizeString);
+			i.putExtra("colour", colourString);
+			i.putExtra("shop", shopString);
+			i.putExtra("address", addressString);
+			
 			startActivity(i);
 			
 			// TODO: GO to item display information
