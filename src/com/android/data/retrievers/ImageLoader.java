@@ -39,6 +39,7 @@ public class ImageLoader {
 	 */
 	private class PhotoToLoad {
 		private ImageView imageView;
+		private long photoId;
 		private String url;
 
 		/**
@@ -47,8 +48,9 @@ public class ImageLoader {
 		 * @param url
 		 * @param imageView
 		 */
-		public PhotoToLoad(String url, ImageView imageView) {
+		public PhotoToLoad(String url, long photoId, ImageView imageView) {
 			this.url = url;
+			this.photoId = photoId;
 			this.imageView = imageView;
 		}
 	}
@@ -109,7 +111,7 @@ public class ImageLoader {
 				return;
 			}
 			Bitmap bmp = getBitmap(photoToLoad.url);
-			memoryCache.put(photoToLoad.url, bmp);
+			MemoryCache.put(photoToLoad.photoId, bmp);
 			if (imageViewReused(photoToLoad)) {
 				return;
 			}
@@ -120,11 +122,9 @@ public class ImageLoader {
 	}
 
 	private ExecutorService executorService;
-
 	private FileCache fileCache;
 	private Map<ImageView, String> imageViews = Collections
 			.synchronizedMap(new WeakHashMap<ImageView, String>());
-	private MemoryCache memoryCache = new MemoryCache();
 	private final int stub_id = R.drawable.ic_launcher;
 
 	/**
@@ -251,8 +251,8 @@ public class ImageLoader {
 	 * @param url
 	 * @param imageView
 	 */
-	private void queuePhoto(String url, ImageView imageView) {
-		PhotoToLoad p = new PhotoToLoad(url, imageView);
+	private void queuePhoto(String url, long photoId, ImageView imageView) {
+		PhotoToLoad p = new PhotoToLoad(url, photoId, imageView);
 		executorService.submit(new PhotosLoader(p));
 	}
 
@@ -260,7 +260,7 @@ public class ImageLoader {
 	 * Clear cache memory
 	 */
 	public void clearCache() {
-		memoryCache.clear();
+		MemoryCache.clear();
 		fileCache.clear();
 	}
 
@@ -271,13 +271,13 @@ public class ImageLoader {
 	 * @param url
 	 * @param imageView
 	 */
-	public void displayImage(String url, ImageView imageView) {
+	public void displayImage(String url, long articleId, ImageView imageView) {
 		imageViews.put(imageView, url);
-		Bitmap bitmap = memoryCache.get(url);
+		Bitmap bitmap = MemoryCache.get(articleId);
 		if (bitmap != null) {
 			imageView.setImageBitmap(bitmap);
 		} else {
-			queuePhoto(url, imageView);
+			queuePhoto(url, articleId, imageView);
 			imageView.setImageResource(stub_id);
 		}
 	}

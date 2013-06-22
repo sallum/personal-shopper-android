@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 /**
  * Fast access memory to temporarily store the images.
@@ -14,13 +15,14 @@ import android.graphics.Bitmap;
  * 
  */
 public class MemoryCache {
-	private Map<String, SoftReference<Bitmap>> cache = Collections
-			.synchronizedMap(new HashMap<String, SoftReference<Bitmap>>());
+	private static Map<Long, SoftReference<Bitmap>> cache = Collections
+			.synchronizedMap(new HashMap<Long, SoftReference<Bitmap>>());
+	private static final String CACHE = "cache";
 
 	/**
 	 * Clear memory.
 	 */
-	public void clear() {
+	public static void clear() {
 		cache.clear();
 	}
 
@@ -30,8 +32,9 @@ public class MemoryCache {
 	 * @param id
 	 * @return
 	 */
-	public Bitmap get(String id) {
+	public static Bitmap get(long id) {
 		if (!cache.containsKey(id)) {
+			Log.d(CACHE, "The id is not present in the cache: " + id);
 			return null;
 		}
 		SoftReference<Bitmap> ref = cache.get(id);
@@ -44,7 +47,8 @@ public class MemoryCache {
 	 * @param id
 	 * @param bitmap
 	 */
-	public void put(String id, Bitmap bitmap) {
+	public static void put(long id, Bitmap bitmap) {
+		Log.d(CACHE, "Adding a new bitmap in the cache with id: " + id);
 		cache.put(id, new SoftReference<Bitmap>(bitmap));
 	}
 }

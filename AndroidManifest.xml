@@ -45,7 +45,7 @@
         
         <activity android:name="com.android.personalshopper.ArticleListView"></activity>
         <activity android:name="com.android.personalshopper.MapView"></activity>
-        <activity android:name="OneArticleView"></activity>
+        <activity android:name="com.android.personalshopper.ArticleView"></activity>
         
     </application>
 

@@ -70,9 +70,9 @@ public class LazyAdapter extends BaseAdapter {
 		// Setting an image
 		ImageView thumb_image = (ImageView) convertView
 				.findViewById(R.id.list_image);
-		imageLoader.displayImage(article.getImage(), thumb_image);
+		imageLoader.displayImage(article.getImage(), article.getId(),
+				thumb_image);
 		return convertView;
 	}
 
-	
 }
