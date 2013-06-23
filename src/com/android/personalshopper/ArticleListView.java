@@ -66,12 +66,16 @@ public class ArticleListView extends Activity {
 				TextView colour = (TextView) view.findViewById(R.id.colour);
 				TextView shop = (TextView) view.findViewById(R.id.shop);
 				TextView address = (TextView) view.findViewById(R.id.address);
+				TextView prize = (TextView) view.findViewById(R.id.prize);
+				
 				String brandString = brand.getText().toString();
 				String typeString = type.getText().toString();
 				String sizeString = size.getText().toString();
 				String colourString = colour.getText().toString();
 				String shopString = shop.getText().toString();
 				String addressString = address.getText().toString();
+				String prizeString = prize.getText().toString();
+				
 				long articleId = manager.getArticlesList().get(position)
 						.getId();
 
@@ -82,6 +86,7 @@ public class ArticleListView extends Activity {
 				i.putExtra("colour", colourString);
 				i.putExtra("shop", shopString);
 				i.putExtra("address", addressString);
+				i.putExtra("prize", prizeString);
 
 				startActivity(i);
 
