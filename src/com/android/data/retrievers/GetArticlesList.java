@@ -1,15 +1,16 @@
 package com.android.data.retrievers;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.android.data.types.Article;
+import com.android.utils.Constants;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -23,12 +24,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class GetArticlesList implements Callable<List<Article>> {
 
-	Context context;
+	private URL url;
 
-	public GetArticlesList(Context context) {
-		// TODO: Remove this when server is ready, just a work around to use
-		// assets
-		this.context = context;
+	public GetArticlesList() {
+		try {
+			url = new URL(Constants.SERVER_URL + "/rip/articles");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -42,10 +45,7 @@ public class GetArticlesList implements Callable<List<Article>> {
 		ObjectMapper mapper = new ObjectMapper();
 		List<Article> articleList = null;
 		try {
-			// TODO: read from server!
-			// entity = mapper.readValue(URL, clazz);
-			InputStream is = context.getAssets().open("article.json");
-			articleList = mapper.readValue(is,
+			articleList = mapper.readValue(url,
 					new TypeReference<ArrayList<Article>>() {
 					});
 		} catch (JsonParseException e1) {

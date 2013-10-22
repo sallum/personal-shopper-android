@@ -49,7 +49,7 @@ public class DataManager {
 	 * Fetches the article list from the server
 	 */
 	private void getArticlesListFromServer() {
-		GetArticlesList articleListThread = new GetArticlesList(context);
+		GetArticlesList articleListThread = new GetArticlesList();
 		Future<List<Article>> future = threadPool.submit(articleListThread);
 		try {
 			articleList.addAll(future.get());
@@ -89,7 +89,7 @@ public class DataManager {
 	 */
 	public void getShop(long shopId) {
 		if (!shopMap.containsKey(shopId)) {
-			GetShop shopThread = new GetShop(context);
+			GetShop shopThread = new GetShop(shopId);
 			Future<Shop> future = threadPool.submit(shopThread);
 			try {
 				Shop shop = future.get();

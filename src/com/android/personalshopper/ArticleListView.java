@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -45,7 +44,7 @@ public class ArticleListView extends Activity {
 
 		locator = new Locator(getApplicationContext());
 		Location location = locator.getBestLocation();
-		Log.d("ArticleView", location.toString());
+		// Log.d("ArticleView", location.toString());
 
 		manager = new DataManager(getApplicationContext());
 		manager.getArticles(3);
@@ -67,7 +66,7 @@ public class ArticleListView extends Activity {
 				TextView shop = (TextView) view.findViewById(R.id.shop);
 				TextView address = (TextView) view.findViewById(R.id.address);
 				TextView prize = (TextView) view.findViewById(R.id.prize);
-				
+
 				String brandString = brand.getText().toString();
 				String typeString = type.getText().toString();
 				String sizeString = size.getText().toString();
@@ -75,7 +74,7 @@ public class ArticleListView extends Activity {
 				String shopString = shop.getText().toString();
 				String addressString = address.getText().toString();
 				String prizeString = prize.getText().toString();
-				
+
 				long articleId = manager.getArticlesList().get(position)
 						.getId();
 

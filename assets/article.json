@@ -1,57 +1,55 @@
-[
-		{
-		"id": "1",
-    	"brand": "nike",
-		"colour": "GREEN",
-		"image": "http://1.bp.blogspot.com/_tqK9UvJpH7I/S8x-j8pDiPI/AAAAAAAACQA/6yhThfoAo00/s320/mono.jpg",
-		"model": "mymodel",
-		"prize": "100",
-		"size": "L",
-		"type": "shoes",
-		"shop": "laTiendaDelBarrio"
-		},
-		{
-		"id": "2",
-    	"brand": "adidas",
-		"colour": "BLUE",
-		"image": "http://mediablogs.los40.com/andaya/files/2012/09/Mono-ok.jpg",
-		"model": "mymodel",
-		"prize": "100",
-		"size": "L",
-		"type": "shoes",
-		"shop": "laTiendaDelBarrio"
-		},
-		{
-		"id": "3",
-    	"brand": "reebok",
-		"colour": "GREEN",
-		"image": "http://1.bp.blogspot.com/_tqK9UvJpH7I/S8x-j8pDiPI/AAAAAAAACQA/6yhThfoAo00/s320/mono.jpg",
-		"model": "mymodel",
-		"prize": "100",
-		"size": "L",
-		"type": "shoes",
-		"shop": "laTiendaDelBarrio"
-		},
-		{
-		"id": "4",
-    	"brand": "zara",
-		"colour": "BLUE",
-		"image": "http://mediablogs.los40.com/andaya/files/2012/09/Mono-ok.jpg",
-		"model": "mymodel",
-		"prize": "100",
-		"size": "L",
-		"type": "shoes",
-		"shop": "laTiendaDelBarrio"
-		},
-				{
-		"id": "5",
-    	"brand": "mango",
-		"colour": "BLUE",
-		"image": "http://1.bp.blogspot.com/_tqK9UvJpH7I/S8x-j8pDiPI/AAAAAAAACQA/6yhThfoAo00/s320/mono.jpg",
-		"model": "mymodel",
-		"prize": "100",
-		"size": "L",
-		"type": "shoes",
-		"shop": "laTiendaDelBarrio"
-		}
-]   
+[{
+	"article_id": 2,
+	"brand": "Nike",
+	"colour": "black",
+	"model": "article 124345",
+	"image": "img/img.jpg",
+	"price": 100.65,
+	"size": "45",
+	"type": "shoe",
+	"shop_id": 1
+},
+{
+	"article_id": 3,
+	"brand": "Adidas",
+	"colour": "white",
+	"model": "article 124345",
+	"image": "img/img.jpg",
+	"price": 100.65,
+	"size": "44",
+	"type": "shoe",
+	"shop_id": 1
+},
+{
+	"article_id": 13,
+	"brand": "nike",
+	"colour": "GREEN",
+	"model": "mymodel",
+	"image": "img/img2.jpg",
+	"price": 100.235,
+	"size": "L",
+	"type": "dress",
+	"shop_id": 1
+},
+{
+	"article_id": 4,
+	"brand": "mango",
+	"colour": "white",
+	"model": "article 124345",
+	"image": "img/img.jpg",
+	"price": 32.0,
+	"size": "XL",
+	"type": "dress",
+	"shop_id": 2
+},
+{
+	"article_id": 5,
+	"brand": "zara",
+	"colour": "white",
+	"model": "article 124345",
+	"image": "img/img.jpg",
+	"price": 32.0,
+	"size": "L",
+	"type": "dress",
+	"shop_id": 2
+}]

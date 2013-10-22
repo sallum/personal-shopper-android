@@ -1,13 +1,14 @@
 package com.android.data.retrievers;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.Callable;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.android.data.types.Shop;
+import com.android.utils.Constants;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,12 +20,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class GetShop implements Callable<Shop> {
 
-	Context context;
+	private URL url;
 
-	public GetShop(Context context) {
-		// TODO: Remove this when server is ready, just a work around to use
-		// assets
-		this.context = context;
+	public GetShop(long shopId) {
+		try {
+			this.url = new URL(Constants.SERVER_URL + "/rip/shops/" + shopId);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -38,10 +41,7 @@ public class GetShop implements Callable<Shop> {
 		ObjectMapper mapper = new ObjectMapper();
 		Shop shop = null;
 		try {
-			// TODO: read from server!
-			// entity = mapper.readValue(URL, clazz);
-			InputStream is = context.getAssets().open("shop.json");
-			shop = mapper.readValue(is, Shop.class);
+			shop = mapper.readValue(url, Shop.class);
 			// TODO: Change error messages
 		} catch (JsonParseException e1) {
 			Log.e("Parsing error", e1.getCause().toString());

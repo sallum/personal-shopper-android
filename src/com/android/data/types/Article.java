@@ -1,5 +1,7 @@
 package com.android.data.types;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Article Entity, represents an article.
  * 
@@ -18,19 +20,35 @@ public class Article implements Entity {
 		PANT, SHIRT, SHOES, TSHIRT;
 	}
 
+	@JsonProperty("article_id")
+	private long articleId;
+	// TODO: poner aqui la imagen o el path...
+
+	@JsonProperty("brand")
 	private String brand;
-	private Colour colour;
+
+	@JsonProperty("colour")
+	private String colour;
 	// TODO: Poner preferencias de usuarios y features de articulos como un enum
 	// comun
 	// private String feature;
-	private long id;
-	// TODO: poner aqui la imagen o el path...
+
+	@JsonProperty("image")
 	private String image;
-	// Como poner esto?
+
+	@JsonProperty("model")
 	private String model;
-	private float prize;
-	private String shop;
+
+	@JsonProperty("price")
+	private float price;
+
+	@JsonProperty("shop_id")
+	private long shop;
+
+	@JsonProperty("size")
 	private String size;
+
+	@JsonProperty("type")
 	private String type;
 
 	/**
@@ -49,7 +67,7 @@ public class Article implements Entity {
 	/**
 	 * @return the colour
 	 */
-	public Colour getColour() {
+	public String getColour() {
 		return colour;
 	}
 
@@ -57,7 +75,7 @@ public class Article implements Entity {
 	 * @return the id
 	 */
 	public long getId() {
-		return id;
+		return articleId;
 	}
 
 	/**
@@ -85,13 +103,13 @@ public class Article implements Entity {
 	 * @return the prize
 	 */
 	public float getPrize() {
-		return prize;
+		return price;
 	}
 
 	/**
 	 * @return the shop
 	 */
-	public String getShop() {
+	public long getShop() {
 		return shop;
 	}
 
@@ -123,7 +141,7 @@ public class Article implements Entity {
 	// this.feature = feature;
 	// }
 
-	public void setColour(Colour colour) {
+	public void setColour(String colour) {
 		this.colour = colour;
 	}
 
@@ -131,7 +149,7 @@ public class Article implements Entity {
 	 * @param id
 	 */
 	public void setId(long id) {
-		this.id = id;
+		this.articleId = id;
 	}
 
 	/**
@@ -152,13 +170,13 @@ public class Article implements Entity {
 	 * @param prize
 	 */
 	public void setPrize(float prize) {
-		this.prize = prize;
+		this.price = prize;
 	}
 
 	/**
 	 * @param shop
 	 */
-	public void setShop(String shop) {
+	public void setShop(long shop) {
 		this.shop = shop;
 	}
 
@@ -185,9 +203,10 @@ public class Article implements Entity {
 	public String toString() {
 		return "Article [" + (brand != null ? "brand=" + brand + ", " : "")
 				+ (colour != null ? "colour=" + colour + ", " : "") + "id="
-				+ id + ", " + (image != null ? "image=" + image + ", " : "")
+				+ articleId + ", "
+				+ (image != null ? "image=" + image + ", " : "")
 				+ (model != null ? "model=" + model + ", " : "") + "prize="
-				+ prize + ", " + (shop != null ? "shop=" + shop + ", " : "")
+				+ price + ", " + "shop=" + shop + ", "
 				+ (size != null ? "size=" + size + ", " : "")
 				+ (type != null ? "type=" + type : "") + "]";
 	}
